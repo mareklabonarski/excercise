@@ -75,13 +75,13 @@ def find_diff_extremum(datas, *keys, max_min=True):
 
 async def print_extremum(url, diff_key1, diff_key2, report_key, max_min):
     """
-    Prints extremum value of diff between 2 table columns
-    :param url:
-    :param diff_key1:
-    :param diff_key2:
-    :param report_key:
-    :param max_min:
-    :return:
+    Prints extremum value of diff between 2 table columns under given url
+    :param url: url of he table
+    :param diff_key1: table column 1
+    :param diff_key2: table column 2
+    :param report_key: table column to be displayed for the row being extremum for col1 - col2
+    :param max_min: calculate max or min (True or False)
+    :return: nothing
     """
     content = await get_file_content(url)
     datas = parse_data(content)
@@ -102,6 +102,10 @@ def main(*args):
 
 
 if __name__ == '__main__':
+    """
+    Usage - pass subsets of arguments in order of:
+    ulr column1 column2 column_for_report 1_or_0 
+    """
     args = sys.argv[1:]
     args = [ast.literal_eval(arg) if not i % 5 else arg for i, arg in enumerate(args)]
     # if not given, use default
